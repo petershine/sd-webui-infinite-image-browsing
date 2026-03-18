@@ -1,6 +1,13 @@
 import type { IIBI18nMap } from '.'
 
 export const de: Partial<IIBI18nMap> = {
+  blockVisibilitySettings: 'Panel-Einstellungen',
+  blockName_actionBar: 'Aktionsschaltflächen',
+  blockName_infoTags: 'Datei-Info-Tags',
+  blockName_tagsContainer: 'Benutzerdefinierte Tags',
+  blockName_lrLayoutControl: 'Layout-Steuerung',
+  blockName_draggableImage: 'Ziehbares Bild',
+  blockName_tabs: 'Prompt-Registerkarten',
   serverKeyRequired:
     'Für die weitere Nutzung ist die Eingabe eines Schlüssels erforderlich, der vom Server konfiguriert wurde.',
   removeFromSearchScanPathAndQuickMove: 'Schnellzugriff entfernen',

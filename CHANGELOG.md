@@ -1,6 +1,28 @@
 [跳到中文](#中文)
 # English
 
+## 2026-03-19
+### ⚙️ Customizable Panel Settings
+Added the ability to customize which feature blocks are displayed in the full-screen info panel.
+
+**Features:**
+- **Panel Settings**: Click the settings icon to toggle visibility of individual feature blocks
+- **Flexible Display**: Show/hide action buttons, file info tags, custom tags, layout controls, draggable image, and prompt tabs
+- **Persistent Storage**: Settings are automatically saved to the backend and restored on next visit
+
+**How to use:**
+1. Open the full-screen info panel for any image
+2. Click the settings icon (⚙️) in the top-right corner
+3. Toggle the switches to show/hide different feature blocks
+4. Settings are automatically saved and applied
+
+**Use Case:**
+Perfect for users who want a cleaner interface or only use specific features. Each user can customize their panel to match their workflow, showing only the blocks they need and hiding unused sections to reduce visual clutter.
+
+**Note:** Settings are stored per-user in the backend, so your custom layout will be preserved across sessions and devices.
+
+<img width="400" alt="Panel settings" src="docs/imgs/panel-settings.png" />
+
 ## 2026-03-17
 ### 🖼️ ComfyUI-Ready Image Dragging
 Added drag-to-transfer functionality specifically designed for ComfyUI workflow integration.
@@ -38,7 +60,6 @@ Added the ability to edit image generation prompts and metadata directly in the 
 - **Smart Caching**: EXIF data is now cached in the database for faster subsequent retrieval
 - **Edit Tracking**: Manually edited prompts are marked and preserved separately from original file metadata
 - **Validation**: Built-in validation for required fields and unique key constraints
-- **Multi-language Support**: Full internationalization for all editing features (English, Chinese, German)
 
 **How to use:**
 1. Click the "Edit" button on any image's generation info panel
@@ -59,7 +80,6 @@ Added inline video playback feature for video items wider than 400px.
 - **Play Here Button**: Hover over a video to see the "Play Here" button in the bottom-left corner
 - **Inline Playback**: Click to play the video directly in the grid item without opening a modal
 - **Auto-Stop Others**: Automatically stops any other playing videos when starting a new one
-- **Multi-language Support**: Button text is fully internationalized (English, Chinese, German)
 - **Smart Reset**: Automatically stops playback when the list is reordered or refreshed
 
 **How to use:**
@@ -777,6 +797,28 @@ Triggered under the same circumstances as above, there will be a button to updat
 
 # 中文
 
+## 2026-03-19
+### ⚙️ 自定义面板设置
+新增了自定义全屏信息面板功能区块显示的功能。
+
+**功能特性：**
+- **面板设置**：点击设置图标即可开关各个功能区块的显示
+- **灵活显示**：可显示/隐藏操作按钮、文件信息标签、自定义标签、布局控制、可拖拽图片、提示词标签页
+- **持久化存储**：设置自动保存到后端，下次访问时恢复
+
+**使用方法：**
+1. 打开任意图片的全屏信息面板
+2. 点击右上角的设置图标（⚙️）
+3. 切换开关来显示/隐藏不同的功能区块
+4. 设置会自动保存并生效
+
+**使用场景：**
+非常适合需要简洁界面或只使用特定功能的用户。每个用户都可以根据自己的工作流程自定义面板，只显示需要的区块，隐藏不使用的部分以减少视觉干扰。
+
+**注意：** 设置按用户存储在后端，因此您的自定义布局将在不同会话和设备间保持。
+
+<img width="400" alt="面板设置" src="docs/imgs/panel-settings.png" />
+
 ## 2026-03-17
 ### 🖼️ 专为ComfyUI设计的图片拖拽功能
 新增了专为ComfyUI工作流还原设计的图片拖拽传输功能。
@@ -813,7 +855,6 @@ Triggered under the same circumstances as above, there will be a button to updat
 - **智能缓存**：EXIF数据现在会被缓存到数据库中，以便更快地后续检索
 - **编辑标记**：手动编辑的提示词会被标记，并与原始文件元数据分开保存
 - **数据验证**：对必填字段和唯一键约束进行内置验证
-- **多语言支持**：所有编辑功能都完全国际化（英文、中文、德语）
 
 **使用方法：**
 1. 点击任意图片生成信息面板上的"编辑"按钮
@@ -834,7 +875,6 @@ Triggered under the same circumstances as above, there will be a button to updat
 - **"在此播放"按钮**：鼠标悬停在视频上时，左下角会显示播放按钮
 - **原地播放**：点击按钮直接在网格 item 内播放视频，无需打开弹窗
 - **自动停止其他视频**：播放新视频时，会自动停止其他正在播放的视频
-- **多语言支持**：按钮文字支持多语言（英文、简体中文、繁体中文、德语）
 - **智能重置**：列表重新排序或刷新时，自动停止播放
 
 **使用方法：**

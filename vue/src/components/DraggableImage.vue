@@ -137,8 +137,7 @@ const closeImage = () => {
       }
 
       .trigger-text {
-        font-size: 14px;
-        font-weight: 500;
+        font-size: 12px;
         white-space: nowrap;
         position: relative;
         z-index: 1;

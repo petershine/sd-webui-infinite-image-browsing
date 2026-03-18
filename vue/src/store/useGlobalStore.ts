@@ -164,9 +164,18 @@ export interface Tab {
   key: string
 }
 
-export type Shortcut = Record<`toggle_tag_${string}` | 'delete' | 'download' | `copy_to_${string}`| `move_to_${string}`, string | undefined> 
+export type Shortcut = Record<`toggle_tag_${string}` | 'delete' | 'download' | `copy_to_${string}`| `move_to_${string}`, string | undefined>
 
 export type DefaultInitinalPage = `workspace_snapshot_${string}` | 'empty' | 'last-workspace-state'
+
+export type FullscreenMenuBlockVisibility = {
+  actionBar: boolean
+  infoTags: boolean
+  tagsContainer: boolean
+  lrLayoutControl: boolean
+  draggableImage: boolean
+  tabs: boolean
+}
 
 export const copyPane = (pane: TabPane) => {
   return cloneDeep({
@@ -226,7 +235,8 @@ export const presistKeys = [
   'magicSwitchTiktokView',
   'showRandomImageInStartup',
   'showTiktokNavigator',
-  'autoUpdateIndex'
+  'autoUpdateIndex',
+  'fullscreenMenuBlockVisibility'
 ]
 
 function cellWidthMap(x: number): number {
@@ -381,6 +391,16 @@ export const useGlobalStore = defineStore(
     const showRandomImageInStartup = ref(true)
     const showTiktokNavigator = ref(false)
 
+    // Fullscreen menu block visibility settings
+    const fullscreenMenuBlockVisibility = ref<FullscreenMenuBlockVisibility>({
+      actionBar: true,
+      infoTags: true,
+      tagsContainer: true,
+      lrLayoutControl: true,
+      draggableImage: true,
+      tabs: true
+    })
+
     // ===== Organize Jobs Management =====
     interface OrganizeJob {
       job_id: string
@@ -467,6 +487,7 @@ export const useGlobalStore = defineStore(
       magicSwitchTiktokView,
       showRandomImageInStartup,
       autoUpdateIndex: ref(true),
+      fullscreenMenuBlockVisibility,
       // Organize jobs
       activeOrganizeJobs,
       showOrganizePanel,

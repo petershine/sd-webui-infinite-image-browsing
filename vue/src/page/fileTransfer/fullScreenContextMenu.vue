@@ -20,7 +20,8 @@ import {
   fullscreen,
   SortAscendingOutlined,
   AppstoreOutlined,
-  EditOutlined
+  EditOutlined,
+  SettingOutlined
 } from '@/icon'
 import { t } from '@/i18n'
 import { createReactiveQueue, unescapeHtml } from '@/util'
@@ -468,6 +469,22 @@ const editPromptAndReload = async () => {
           <FullscreenExitOutlined v-if="showFullContent" />
           <FullscreenOutlined v-else />
         </div>
+        <a-dropdown :get-popup-container="getParNode" trigger="click">
+          <div class="icon" style="cursor: pointer">
+            <SettingOutlined />
+          </div>
+          <template #overlay>
+            <div class="block-visibility-settings">
+              <div class="settings-title">{{ $t('blockVisibilitySettings') }}</div>
+              <div class="settings-list">
+                <div class="settings-item" v-for="(_, key) in global.fullscreenMenuBlockVisibility" :key="key">
+                  <a-switch v-model:checked="global.fullscreenMenuBlockVisibility[key]" size="small" />
+                  <span class="settings-label">{{ $t(`blockName_${key}`) }}</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </a-dropdown>
         <div style="display: flex; flex-direction: column; align-items: center; cursor: grab" class="icon"
           :title="t('fullscreenview')" @click="requestFullscreen">
           <img :src="fullscreen" style="width: 21px;height: 21px;padding-bottom: 2px;" alt="">
@@ -482,7 +499,7 @@ const editPromptAndReload = async () => {
           </template>
         </a-dropdown>
         <div flex-placeholder v-if="showFullContent" />
-        <div v-if="showFullContent" class="action-bar">
+        <div block  v-if="showFullContent && global.fullscreenMenuBlockVisibility.actionBar" class="action-bar">
 
           <a-dropdown :trigger="['hover']" :get-popup-container="getParNode">
             <a-button>{{ t('openContextMenu') }}</a-button>
@@ -552,7 +569,7 @@ const editPromptAndReload = async () => {
       </div>    
       <div class="gen-info" v-if="showFullContent">
     
-        <div class="info-tags">
+        <div block  v-if="global.fullscreenMenuBlockVisibility.infoTags" class="info-tags">
           <span class="info-tag">
             <span class="name">
               {{ $t('fileName') }}
@@ -574,7 +591,7 @@ const editPromptAndReload = async () => {
             </span>
           </span>
         </div>
-        <div class="tags-container" v-if="global.conf?.all_custom_tags">
+        <div block class="tags-container" v-if="global.conf?.all_custom_tags && global.fullscreenMenuBlockVisibility.tagsContainer">
           <div class="sort-tag-switch" @click="tagA2ZClassify = !tagA2ZClassify">
             <SortAscendingOutlined v-if="!tagA2ZClassify" />
             <AppstoreOutlined v-else />
@@ -603,7 +620,7 @@ const editPromptAndReload = async () => {
             </div>
           </template>
         </div>
-        <div class="lr-layout-control">
+        <div block class="lr-layout-control" v-if="global.fullscreenMenuBlockVisibility.lrLayoutControl">
           <div class="ctrl-item">
             {{ $t('experimentalLRLayout') }}： <a-switch v-model:checked="lr" size="small" />
           </div>
@@ -621,14 +638,14 @@ const editPromptAndReload = async () => {
           </template>
         </div>
         <!-- 可拖拽的原图 -->
-        <DraggableImage :file="file">
+        <DraggableImage block v-if="global.fullscreenMenuBlockVisibility.draggableImage" :file="file">
           <div class="custom-drag-trigger">
             <DragOutlined class="trigger-icon" />
             <span class="trigger-text">{{ $t('dragImageToTransfer') }}</span>
           </div>
         </DraggableImage>
 
-        <a-tabs v-model:activeKey="promptTabActivedKey">
+        <a-tabs block v-if="global.fullscreenMenuBlockVisibility.tabs" v-model:activeKey="promptTabActivedKey">
           <a-tab-pane key="structedData" :tab="$t('structuredData')">
             <div>
               <template v-if="geninfoStruct.prompt">
@@ -1019,6 +1036,44 @@ const editPromptAndReload = async () => {
 
     :deep(.anticon) {
       font-size: 12px;
+    }
+  }
+}
+
+.block-visibility-settings {
+  background: var(--zp-primary-background);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 200px;
+  max-width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--zp-secondary);
+
+  .settings-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--zp-secondary);
+    color: var(--zp-primary);
+  }
+
+  .settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .settings-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+
+    .settings-label {
+      flex: 1;
+      font-size: 13px;
+      color: var(--zp-primary);
     }
   }
 }
